@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, abort
 import os
-import webbrowser
 from threading import Timer
 
 app = Flask(__name__)
@@ -23,10 +22,5 @@ def home():
     model_path = os.path.join(app.static_folder)
     return render_template('home.html')
     
-def open_browser():
-    """Automatically open the default web browser."""
-    webbrowser.open_new("http://127.0.0.1:5000/")
-
 if __name__ == '__main__':
-    Timer(1, open_browser).start()  
     app.run(debug=True, use_reloader=False)
