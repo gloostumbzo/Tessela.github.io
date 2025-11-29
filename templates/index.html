@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>-Web-Title-</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+    }
+    h1 {
+      text-align: left;
+      padding: 5px;
+      background: #333;
+      color: white;
+      margin: 0;
+    }
+    h4 {
+      text-align: top;
+      padding: 0px;
+      background: rgb(30, 30, 30);
+      color: white;
+      margin: 0;  
+    }
+    .sticky-header {
+      position: sticky;
+      top: 0;              
+      background: rgb(30, 30, 30);    
+      color: white;
+      padding: 10px;
+      margin: 0;
+      z-index: 1000;      
+    }
+    .sticky-header1 {
+      position: sticky;
+      top: 67px;              
+      background: rgb(30, 30, 30);    
+      color: white;
+      padding: 10px;
+      margin: 0;
+      z-index: 1000;      
+    }
+
+    .scroll-box {
+      display: grid;
+      width: 1050px;
+      max-width: 1500px;
+      top: 50px;
+      grid-template-columns: repeat(4, 1fr);
+      padding-left: 50px;
+      gap: 10px;
+      padding: 5px;
+      overflow-y: auto;
+      max-height: calc(100vh - 120px);
+      background: #fff;
+    }
+
+
+    .scroll-box::-webkit-scrollbar {
+      width: 10px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+
+    .model-button {
+      width: 250px;
+      height: 250px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      background: #fafafa;
+      transition: transform 0.1s, border-color 0.1s;
+      cursor: pointer;
+    }
+    .top-buttons {
+      width: 80px;
+      height: 30px;
+      margin: 0; 
+      border: none;
+      font-size: 20px;
+      font-weight: 400;
+      outline: none;
+      border-radius: 5px;
+      overflow: hidden;
+      background: rgb(30,30,30);
+      transition: font-size 0.2s ease;
+      cursor: pointer;
+    }
+    .top-buttons:hover {
+      font-size: 23px; 
+    }
+    .model-button:hover {
+      transform: scale(0.95);
+      border-color: #333;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+    }
+
+    .gallery-container {
+      display: block;
+      background: white;
+      padding-left: 600px;
+      padding-top: 110px;
+      justify-content: center;
+      left: 0;
+    }
+    .row {
+      display: flex;
+      align-items: center; 
+      gap: 10px; 
+    }  
+    #bg-video {
+      padding-top: 0px;
+      width: 100%;
+      height: 49vh;    
+      object-fit: cover;
+    }
+    .hero {
+      height: 100vh; 
+      background: url("{{ url_for('static', filename='bg.jpg') }}") center/cover no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <div class="sticky-header row">
+      <h1>title</h1>
+      <button class="top-buttons" style="color: white;"onclick="home()">
+          Home
+      </button>
+      <button class="top-buttons" style="color: white;">
+          models
+      </button>
+      <button class="top-buttons" style="color: white;">
+          about
+      </button>
+  </div>
+  <div class="sticky-header1">
+      <h4>sub-title</h4>
+  </div>
+  <div class="row">
+      
+  </div>
+  <video autoplay loop muted  id="bg-video">
+  <source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+  </video>
+  <div class="gallery-container">
+    <div class="scroll-box">
+      {% for model in models %}
+        <div class="model-button" onclick="viewModel('{{ model }}')">
+          <model-viewer 
+            src="{{ url_for('static', filename=model) }}" 
+            alt="{{ model }}"
+            background-color="#ffffff">
+          </model-viewer>
+          <p style="text-align:center; font-size:14px;">{{ model }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    function viewModel(modelName) {
+      window.location.href = '/view/' + modelName;
+    }
+    function home(){
+      window.location.href = '/home'
+    }
+  </script>
+</body>
+</html>
