@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tedux.Home</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+    }
+    h1 {
+      text-align: left;
+      padding: 5px;
+      background: #333;
+      color: white;
+      margin: 0;
+    }
+    h4 {
+      text-align: top;
+      padding: 0px;
+      background: rgb(30, 30, 30);
+      color: white;
+      margin: 0;  
+    }
+    .sticky-header {
+      position: sticky;
+      top: 0;              
+      background: rgb(30, 30, 30);    
+      color: white;
+      padding: 10px;
+      margin: 0;
+      z-index: 1000;      
+    }
+    .sticky-header1 {
+      position: sticky;
+      top: 67px;              
+      background: rgb(30, 30, 30);    
+      color: white;
+      padding: 10px;
+      margin: 0;
+      z-index: 1000;      
+    }
+
+    .scroll-box {
+      display: grid;
+      width: 1050px;
+      max-width: 1500px;
+      top: 50px;
+      grid-template-columns: repeat(4, 1fr);
+      padding-left: 50px;
+      gap: 10px;
+      padding: 5px;
+      overflow-y: auto;
+      max-height: calc(100vh - 120px);
+      background: #fff;
+    }
+    .model-button {
+      width: 250px;
+      height: 250px;
+      margin: 0 auto; /* center horizontally */
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      background: #fafafa;
+      transition: transform 0.1s, border-color 0.1s;
+      cursor: pointer;
+    }
+    .scroll-box::-webkit-scrollbar {
+      width: 10px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+    .row {
+      display: flex;
+      align-items: center; 
+      gap: 10px; 
+    }
+    </style>
+</head>
+<body>
+    <div class="sticky-header row">
+      <h1>title</h1>
+      <button class="model-button" style="height: 30px; width: 80px; margin: 0; color: white; background: rgb(30,30,30);"onclick="home()">
+          Home
+      </button>
+      <button class="model-button" style="height: 30px; width: 80px; margin: 0; color: white; background: rgb(30,30,30);">
+          button
+      </button>
+      <button class="model-button" style="height: 30px; width: 80px; margin: 0; color: white; background: rgb(30,30,30);" >
+          about us
+      </button>
+  </div>
+  <div class="sticky-header1">
+      <h4>sub-title</h4>
+  </div>
+<script>
+    function viewModel(modelName) {
+      window.location.href = '/view/' + modelName;
+    }
+    function home(){
+      window.location.href = '/home'
+    }
+</script>
+</body>
+</html>

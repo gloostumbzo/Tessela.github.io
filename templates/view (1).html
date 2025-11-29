@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Viewing {{ model_name }}</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #222;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      padding: 10px;
+    }
+    model-viewer {
+      width: 90%;
+      height: 80vh;
+      border-radius: 10px;
+      background: #fff;
+    }
+    .back {
+      margin-top: 10px;
+      background: #555;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .back:hover {
+      background: #777;
+    }
+  </style>
+</head>
+<body>
+  <h1>{{ model_name }}</h1>
+  <model-viewer 
+      src="{{ url_for('static', filename=model_name) }}" 
+      alt="{{ model_name }}" 
+      camera-controls 
+      auto-rotate 
+      background-color="#ffffff">
+  </model-viewer>
+  <a class="back" href="/">⬅ Back to Gallery</a>
+</body>
+</html>
